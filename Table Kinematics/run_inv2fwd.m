@@ -2,6 +2,12 @@ clc; close all; clear;
 addpath(fullfile(pwd,'functions'));
 addpath(fullfile(pwd,'lookup tables'));
 
+%% 
+% This code allows us to choose the required outputs and see a plot of 
+% the table reproducing this output by means of running the inverse
+% kinematics and plugging the results into the forward kinematics function
+% that allows us to plot the table
+
 v = 'v1';
 
 % With "real" table (lookup_table_v1_dq2.mat)

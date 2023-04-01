@@ -1,5 +1,13 @@
 function [a7, b7, c7] = compute_2ndfloor(A1, B1, C1, qA, qB, qC, d, L1, theta)
-
+%% 
+% This function computes the xyz coordinates of the points of contact of the
+% two arms (the 2nd floor). It is difficult to use sentences to describe 3D
+% rotations and translations without providing drawings and detailed
+% explanation and therefore this code is not very readable.
+% The function takes as input the coordinates of the servos (the points on 
+% the 1st floor), the angles they are given and some geometric properties 
+% and outputs the xyz coordinates of the three points on the 2nd floor.
+%%
 a1 = A1(1:2);
 b1 = B1(1:2);
 c1 = C1(1:2);

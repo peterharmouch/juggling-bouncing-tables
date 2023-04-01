@@ -4,12 +4,16 @@ function geom = generate_geom(type)
 % of a specific type of geometry. The function takes a string argument 
 % that specifies the type of geometry and returns a structure with the 
 % following fields:
-% d: the diameter of the geometry
-% L1: the length of the first section of the geometry
-% L2: the length of the second section of the geometry
-% L3: the length of the third section of the geometry
-% R: the radius of curvature of the geometry
-% alpha: the angle of curvature of the geometry (in degrees)
+% d: the distance between a servo and the origin
+% L1:    the length of the first arm
+% L2:    the length of the second arm
+% L3:    the length of a side of the triangle formed by the points of contact
+%        between the arms and the table
+% R:     the radius of the top plate
+% alpha: the angle formed by the two following vectors:
+%        - the vector starting on the servo and pointing towards the origin
+%        - the vector starting on the servo and pointing towards the arm on the
+%          xy plane
 % 
 % Input Arguments:
 % type : a string that specifies the type of geometry to generate. It can be one of the following values:

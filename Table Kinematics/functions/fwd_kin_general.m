@@ -15,6 +15,8 @@ function[Z, theta_x, theta_y] = fwd_kin_general(qA, qB, qC, version, draw)
 %                *'v1' (default): the real table.
 %                *'v2': the real table with arms pointing towards the origin.
 %                *'v3': new design that gives us a larger feasible space.
+%                Check the documentation of the generate_geom.m function 
+%                for the different geometric dimensions and their meanings.
 %    draw      - Optional scalar value representing the type of plot to be displayed.
 %                * 0 (default): No plot will be displayed.
 %                * 1: The top plate will be displayed.

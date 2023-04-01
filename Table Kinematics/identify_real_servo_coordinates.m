@@ -1,6 +1,11 @@
 clc; close all; clear;
 addpath(fullfile(pwd,'images'));
 
+% This code prompts us to display an image, manually set the origin and the 
+% unit vector on the y axis. It allows us then to choose points on the
+% image and know their coordinates. This code can be useful if the
+% mechanical design of the table changes and we need to determine
+% difference length and angles remotely.
 
 % Read the image
 image = imread('table_orientation1.jpg');
