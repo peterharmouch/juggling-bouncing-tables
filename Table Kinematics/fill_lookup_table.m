@@ -1,13 +1,17 @@
 clc; close all; clear;
 addpath(fullfile(pwd,'functions'));
 
-% Geometry of the table
-v = 'v3';
 
-% Defining the joint angle ranges and discretization step
+%% Run this code to fill in a lookup table
+% Lookup tables are used to perform inverse kinematics
+
+% Defining the inputs
+v = 'v3'; % Geometry of the table
+dq = 20;  % Discretization
+
+% Defining the joint angle ranges
 q_min = 0;
 q_max = 85;
-dq = 10;
 
 % Creating a grid of all possible joint angle combinations
 [qA, qB, qC] = meshgrid(q_min:dq:q_max);
@@ -32,7 +36,10 @@ for i = 1:numel(qA)
     end
 end
 
+% Name the table based on the geometry version and the discretization
+name = strcat('lookup_table_', v, '_dq', num2str(dq), '.mat');
+
 % Saving the data to the file
-filename = fullfile('lookup tables', strcat('lookup_table_', v, '_dq', num2str(dq), '.mat'));
+filename = fullfile('lookup tables', name);
 save(filename, 'qA', 'qB', 'qC', 'Z', 'theta_x', 'theta_y');
 

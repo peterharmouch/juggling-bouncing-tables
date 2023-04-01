@@ -2,6 +2,12 @@ clc; close all; clear;
 addpath(fullfile(pwd,'functions'));
 addpath(fullfile(pwd,'lookup tables'));
 
+
+%%
+% This code allows us to define output trajectories and run the inverse
+% kinematics of the table
+
+% Geometry of the table
 v = 'v1';
 
 % Loading the lookup table from file

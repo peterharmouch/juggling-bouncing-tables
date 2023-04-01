@@ -2,6 +2,11 @@ clc; close all; clear;
 addpath(fullfile(pwd,'functions'));
 
 
+%%
+% Computing the outputs for all different input combinations in order to
+% have an idea about the outputs that can be reached with that table design
+%%
+
 %% Setting the angles of each servo
 % Geometry of the table
 v = 'v3';
@@ -49,15 +54,15 @@ range_theta_x = [min(outputs(:, 2)), max(outputs(:, 2))];
 range_theta_y = [min(outputs(:, 3)), max(outputs(:, 3))];
 
 
-%% Plot figure with subplots on the principal plane
+%% Plotting figure with subplots on the principal plane
 figure(1);
-% Create a new figure with four subplots
+% Creating a new figure with four subplots
 subplot(2,2,1); % Isometric view
 subplot(2,2,2); % xy plane
 subplot(2,2,3); % xz plane
 subplot(2,2,4); % yz plane
 
-% Plot the data in the first subplot
+% Plotting the data in the first subplot
 subplot(2,2,1);
 scatter3(outputs(:,2), outputs(:,3), outputs(:,1), '.');
 
@@ -69,7 +74,7 @@ xlabel('theta_x');
 ylabel('theta_y');
 zlabel('Z');
 
-% Project the data onto the xy plane and plot it in the second subplot
+% Projecting the data onto the xy plane and plotting it in the second subplot
 subplot(2,2,2);
 scatter(outputs(:,2), outputs(:,3), '.');
 
@@ -79,7 +84,7 @@ ylim(range_theta_y + 0.1*(range_theta_y(2)-range_theta_y(1))*[-1, 1]);
 xlabel('theta_x');
 ylabel('theta_y');
 
-% Project the data onto the xz plane and plot it in the third subplot
+% Projecting the data onto the xz plane and plotting it in the third subplot
 subplot(2,2,3);
 scatter(outputs(:,2), outputs(:,1), '.');
 
@@ -89,7 +94,7 @@ ylim(range_z + 0.1*(range_z(2)-range_z(1))*[-1, 1]);
 xlabel('theta_x');
 ylabel('Z');
 
-% Project the data onto the yz plane and plot it in the fourth subplot
+% Projecting the data onto the yz plane and plotting it in the fourth subplot
 subplot(2,2,4);
 scatter(outputs(:,3), outputs(:,1), '.');
 
@@ -100,41 +105,47 @@ xlabel('theta_y');
 ylabel('Z');
 
 
-%% Plots to find feasible region
+%% Plots to see the required feasible region
+% Setting the output points of interest
 Z_low = 10.5;
 Z_high = 12.5;
 tx = 10;
 ty = 30;
+
+% Change the scale to see more points on the planes
 scale = 0.2;
 
+% Reorganizing the points of interest to facilitate plotting
 Z_dif = Z_high-Z_low;
-tx_low = 0;
+tx_low = 0;             % the theta_x location never needs to be lower than 0
 tx_high = ty;
 tx_dif = tx_high-tx_low;
 ty_low = -tx;
 ty_high = tx;
 ty_dif = ty_high-ty_low;
 
-% create logical indexing vectors for each column
+% Creating logical indexing vectors for each column
 M = outputs;
 idx1 = (M(:, 1) >= Z_low) & (M(:, 1) <= Z_high);
 idx2 = (M(:, 2) >= tx_low) & (M(:, 2) <= tx_high);
 idx3 = (M(:, 3) >= ty_low) & (M(:, 3) <= ty_high);
 
-% combine the indexing vectors into a single logical indexing vector
+% Combining the indexing vectors into a single logical indexing vector
 idx = idx1 & idx2 & idx3;
 
-% use the logical indexing vector to select only the rows that satisfy the conditions
+% Using the logical indexing vector to select only the rows that satisfy the conditions
 M = M(idx, :);
 
 figure(2);
-% create logical indexing vectors for each column
+% Creating logical indexing vectors for each column
 idx1 = (M(:, 1) >= Z_low - (scale*Z_dif)) & (M(:, 1) <= Z_low + (scale*Z_dif));
 idx2 = (M(:, 1) >= Z_high - (scale*Z_dif)) & (M(:, 1) <= Z_high + (scale*Z_dif));
 idx3 = (M(:, 2) >= tx_low - (scale*tx_dif)) & (M(:, 2) <= tx_low + (scale*tx_dif));
 idx4 = (M(:, 2) >= tx_high - (scale*tx_dif)) & (M(:, 2) <= tx_high + (scale*tx_dif));
 idx5 = (M(:, 3) >= ty_low - (scale*ty_dif)) & (M(:, 3) <= ty_low + (scale*ty_dif));
 idx6 = (M(:, 3) >= ty_high - (scale*ty_dif)) & (M(:, 3) <= ty_high + (scale*ty_dif));
+
+% Plotting the planes of interest in subplots
 
 c11 = M(idx1, :);
 subplot(3,2,1);
