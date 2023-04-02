@@ -2,6 +2,11 @@ clc; close all; clear;
 addpath(fullfile(pwd,'functions'));
 
 
+%%
+% Computing the coordinates of the center of the table for different input 
+% combinations in order to know how far the table can move from its center
+%%
+
 %% Setting the angles of each servo
 % Geometry of the table
 v = 'v1';
