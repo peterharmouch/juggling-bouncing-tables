@@ -6,12 +6,12 @@ addpath(fullfile(pwd,'functions'));
 % Lookup tables are used to perform inverse kinematics
 
 % Defining the inputs
-v = 'v3'; % Geometry of the table
-dq = 20;  % Discretization
+v = 'v1'; % Geometry of the table
+dq = 1;  % Discretization
 
 % Defining the joint angle ranges
 q_min = 0;
-q_max = 85;
+q_max = 89;
 
 % Creating a grid of all possible joint angle combinations
 [qA, qB, qC] = meshgrid(q_min:dq:q_max);

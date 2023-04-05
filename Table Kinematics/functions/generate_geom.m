@@ -4,7 +4,8 @@ function geom = generate_geom(type)
 % of a specific type of geometry. The function takes a string argument 
 % that specifies the type of geometry and returns a structure with the 
 % following fields:
-% d: the distance between a servo and the origin
+% d:     the distance between a servo and the origin 
+%        (d = (distance between servos)/sqrt(3))                    
 % L1:    the length of the first arm
 % L2:    the length of the second arm
 % L3:    the length of a side of the triangle formed by the points of contact
@@ -18,7 +19,7 @@ function geom = generate_geom(type)
 % Input Arguments:
 % type : a string that specifies the type of geometry to generate. It can be one of the following values:
 % 'v1' : the real table.
-% 'v2' : the real table reassembled to make arms point to the origin.
+% 'v2' : old approximation of the table with slightly different dimensions and arms pointing to the origin.
 % 'v3' : a new design that gives us a larger feasible space.
 %
 % Output:
@@ -26,11 +27,11 @@ function geom = generate_geom(type)
 %%
     switch type
         case 'v1'
-            geom = struct('d', 7.5, ...
+            geom = struct('d', 9, ...
                 'L1', 7, ...
-                'L2', 9, ...
-                'L3', 12.5, ...
-                'R', 15, ...
+                'L2', 9.6, ...
+                'L3', 13.3, ...
+                'R', 14, ...
                 'alpha', 16);
         case 'v2'
             geom = struct('d', 7.5, ...

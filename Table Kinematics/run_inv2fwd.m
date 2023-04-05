@@ -12,9 +12,9 @@ addpath(fullfile(pwd,'lookup tables'));
 v = 'v1';
 
 % With "real" table (lookup_table_v1_dq2.mat)
-z = 11;           % 10  -> 13  and  10 -> 13  and  10.5 -> 12.5
-theta_x = 15;     % 0   -> 20  and  0  -> 24  and  0    -> 28
-theta_y = 0;      % -12 -> 12  and  -7 -> 7   and  -7   -> 7
+z = 10;
+theta_x = 10;
+theta_y = 0;
 
 % % With new design (lookup_table_v3_dq2.mat)
 % z = 16;             % 16  -> 20

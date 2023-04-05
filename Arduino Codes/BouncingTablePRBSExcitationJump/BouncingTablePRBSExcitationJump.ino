@@ -19,41 +19,42 @@ private:
 };
 
 // Servos definition
-Servo myservo1;
-Servo myservo2;
-Servo myservo3;
+Servo myservoB;
+Servo myservoC;
+Servo myservoA;
 
 // Mode definition
 int mode;
 int a;
 
 // Positions
-float pos1, pos2, pos3;
+float posB, posC, posA;
 
 // Calibrate offsets
-float offset1 = -4;
-float offset2 = -1;
-float offset3 = 4;
+float offsetB = -3;
+float offsetC = -1;
+float offsetA = 4;
 
 // Control parameters
-float lowPos = 30;
-float highPos = 40;
+float lowPos = 47;
+float highPos = 57;
 
 void setup() {
   // initialize serial
   Serial.begin(115200);
 
   // positions initialization
-  pos1 = lowPos;
-  pos2 = lowPos;
-  pos3 = lowPos;
+  posA = lowPos;
+  posB = lowPos;
+  posC = lowPos;
 
   // servos setup
-  myservo1.attach(9);
-  myservo2.attach(8);
-  myservo3.attach(7);
-  updateServos(pos1, pos2, pos3);
+  myservoA.attach(7);
+  myservoB.attach(9);
+  myservoC.attach(8);
+  updateServos(posB, posC, posA);
 
+  delay(4000);
   // mode initialization
   mode = DOWN;
   a = 1;
@@ -66,20 +67,20 @@ void loop() {
 
   switch (mode) {
     case UP:
-      pos1 = highPos;
-      pos2 = highPos;
-      pos3 = highPos;
-      updateServos(pos1, pos2, pos3);
+      posA = highPos;
+      posB = highPos;
+      posC = highPos;
+      updateServos(posB, posC, posA);
       if (!prbs_output) {
         mode = DOWN;
       }
       break;
 
     case DOWN:
-      pos1 = lowPos;
-      pos2 = lowPos;
-      pos3 = lowPos;
-      updateServos(pos1, pos2, pos3);
+      posA = lowPos;
+      posB = lowPos;
+      posC = lowPos;
+      updateServos(posB, posC, posA);
       if (prbs_output) {
         mode = UP;
       }
@@ -91,10 +92,10 @@ void loop() {
       
 }
 
-void updateServos(float pos1, float pos2, float pos3) {
-  myservo1.write(pos1 + offset1);
-  myservo2.write(pos2 + offset2);
-  myservo3.write(pos3 + offset3);
+void updateServos(float posB, float posC, float posA) {
+  myservoA.write(posA + offsetA);
+  myservoB.write(posB + offsetB);
+  myservoC.write(posC + offsetC);
 }
 
 void delayMix() {
