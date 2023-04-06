@@ -6,7 +6,7 @@ function [Z, theta_x, theta_y] = compute_exp(str)
 %%
 
     %% Selecting the filename and extracting the file number
-    filename = fullfile('..', 'csv files', str);
+    filename = fullfile(pwd, 'csv files', str);
     num = str2double(strcat(str(3), str(4)));
     
     

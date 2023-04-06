@@ -1,9 +1,9 @@
 clc; clear; close all; 
-addpath(fullfile(pwd,'functions'));
+addpath(fullfile(pwd, 'processing', 'functions'));
 
 
-%% Read inputs
-filename = fullfile(pwd, 'input angles', 'exp_kin_inputs2.csv');
+%% Reading inputs
+filename = fullfile(pwd, 'processing', 'input angles', 'exp_kin_inputs.csv');
 warning('off', 'MATLAB:table:ModifiedAndSavedVarnames');
 data = readtable(filename); 
 
@@ -13,7 +13,7 @@ qB = table2array(data(:, 'qB'));
 qC = table2array(data(:, 'qC'));
 
 
-%% Compute math outputs
+%% Computing math outputs
 Z_math = zeros(length(qA), 1);
 tx_math = zeros(length(qA), 1);
 ty_math = zeros(length(qA), 1);
@@ -25,7 +25,7 @@ for i = 1:length(qA)
 end
 
 
-%% Compute experimental outputs
+%% Computing experimental outputs
 Z_exp = zeros(length(qA), 1);
 tx_exp = zeros(length(qA), 1);
 ty_exp = zeros(length(qA), 1);
@@ -44,7 +44,7 @@ tx_err = mean(abs(tx_math - tx_exp));
 ty_err = mean(abs(ty_math - ty_exp));
 
 
-%% Plot
+%% Plotting
 figure
 subplot(3,1,1) % first subplot
 plot(idx, Z_math, 'b', idx, Z_exp, 'r')
