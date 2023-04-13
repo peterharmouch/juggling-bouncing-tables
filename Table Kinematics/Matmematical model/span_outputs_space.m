@@ -1,5 +1,5 @@
 clc; close all; clear;
-addpath(fullfile(pwd,'functions'));
+addpath(genpath(fullfile(pwd,'functions')));
 
 
 %%

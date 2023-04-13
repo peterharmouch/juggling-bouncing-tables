@@ -47,21 +47,21 @@ ty_err = mean(abs(ty_math - ty_exp));
 %% Plotting
 figure
 subplot(3,1,1) % first subplot
-plot(idx, Z_math, 'b', idx, Z_exp, 'r')
+plot(idx, Z_math, 'bo-', idx, Z_exp, 'ro-')
 xlabel('Point Number')
 ylabel('Z')
 legend('Math', 'Exp')
 title('Z vs Point Number')
 
 subplot(3,1,2) % second subplot
-plot(idx, tx_math, 'b', idx, tx_exp, 'r')
+plot(idx, tx_math, 'bo-', idx, tx_exp, 'ro-')
 xlabel('Point Number')
 ylabel('tx')
 legend('Math', 'Exp')
 title('theta_x vs Point Number')
 
 subplot(3,1,3) % third subplot
-plot(idx, ty_math, 'b', idx, ty_exp, 'r')
+plot(idx, ty_math, 'bo-', idx, ty_exp, 'ro-')
 xlabel('Point Number')
 ylabel('ty')
 legend('Math', 'Exp')

@@ -1,5 +1,5 @@
 clc; close all; clear;
-addpath(fullfile(pwd,'functions'));
+addpath(genpath(fullfile(pwd,'functions')));
 
 
 %%
@@ -31,7 +31,7 @@ for i = 1:length(qs)
             qC = qs(k); % Angle for the servo on the point (-sin(120)*d, cos(120)*d)
             
             % Computing forward kinematics
-            center = get_center_coordinates(qA, qB, qC, v);
+            center = get_center_coordinates(qA, qB, qC, v, 1);
 
             % Printing progress
             percent_complete = iter / num_iterations * 100;

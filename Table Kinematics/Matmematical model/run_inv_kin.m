@@ -1,5 +1,5 @@
 clc; close all; clear;
-addpath(fullfile(pwd,'functions'));
+addpath(genpath(fullfile(pwd,'functions')));
 addpath(fullfile(pwd,'lookup tables'));
 
 
@@ -42,7 +42,7 @@ switch trajectory_type
 end
 
 % Computing the joint angles
-[joint_angle_A, joint_angle_B, joint_angle_C] = inv_kin_interpol(z_positions, x_rotations, y_rotations, lookup_table);
+[joint_angle_A, joint_angle_B, joint_angle_C] = inv_kin_linear_interpolation(z_positions, x_rotations, y_rotations, lookup_table);
 
 % Plotting the joint angles
 figure(1)

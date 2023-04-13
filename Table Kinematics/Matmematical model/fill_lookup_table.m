@@ -1,5 +1,5 @@
 clc; close all; clear;
-addpath(fullfile(pwd,'functions'));
+addpath(genpath(fullfile(pwd,'functions')));
 
 
 %% Run this code to fill in a lookup table
@@ -7,7 +7,8 @@ addpath(fullfile(pwd,'functions'));
 
 % Defining the inputs
 v = 'v1'; % Geometry of the table
-dq = 1;  % Discretization
+dq = 5;  % Discretization
+div = 1e3;
 
 % Defining the joint angle ranges
 q_min = 0;
@@ -30,9 +31,9 @@ for i = 1:numel(qA)
     % Printing progress
     iter = iter + 1;
     percent_complete = (iter / length(qA)^3) * 100;
-    if percent_complete > last_percent_complete + 0.1
-        disp(['Loop progress: ' num2str(floor(percent_complete*10)/10) '%']);
-        last_percent_complete = floor(percent_complete*10)/10;
+    if percent_complete > last_percent_complete + (1/div)
+        disp(['Loop progress: ' num2str(floor(percent_complete*div)/div) '%']);
+        last_percent_complete = floor(percent_complete*div)/div;
     end
 end
 
