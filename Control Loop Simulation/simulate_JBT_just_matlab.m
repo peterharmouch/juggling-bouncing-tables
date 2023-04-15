@@ -8,10 +8,10 @@ tic;
 Ts = 0.01; % Sampling time
 t_end = 5; % Total duration
 
-trajectoryType = "Z ramp";
+trajectoryType = "Z ramp"; % Check next section for options
 dynamicsType = "identified"; % Choose between "identified" or "no dynamics"
-kinematicsMethod = "interpolation"; % Choose between "interpolation" or "nearest"
-controller = "no control"; % Choose between "PID" or "no control"
+kinematicsMethod = "solver"; % Choose between "interpolation" or "nearest" or "solver"
+controller = "PID"; % Choose between "PID" or "no control"
 
 switch kinematicsMethod
     case "interpolation"
@@ -55,6 +55,11 @@ switch kinematicsMethod
         [qA_in, qB_in, qC_in] = inv_kin_linear_interpolation(Z_in, tx_in, ty_in, LT);
     case "nearest"
         [qA_in, qB_in, qC_in] = inv_kin_nearest(Z_in, tx_in, ty_in, LT);
+    case "solver"
+        qA_in = zeros(size(Z_in)); qB_in = zeros(size(Z_in)); qC_in = zeros(size(Z_in));
+        for i = 1: length(Z_in)
+            [qA_in(i), qB_in(i), qC_in(i)] = inv_kin_general(Z_in(i), tx_in(i), ty_in(i), 'v1');
+        end
 end
 
 
@@ -69,6 +74,7 @@ switch controller
     case "no control"
         C = 1;
 end
+
 
 %% System dynamics
 switch dynamicsType
@@ -87,6 +93,11 @@ switch kinematicsMethod
         [Z_out, tx_out, ty_out] = fwd_kin_linear_interpolation(qA_out, qB_out, qC_out, LT);
     case "nearest"
         [Z_out, tx_out, ty_out] = fwd_kin_nearest(qA_out, qB_out, qC_out, LT);
+    case "solver"
+        Z_out = zeros(size(Z_in)); tx_out = zeros(size(Z_in)); ty_out = zeros(size(Z_in));
+        for i = 1:length(Z_in)
+            [Z_out(i), tx_out(i), ty_out(i)] = fwd_kin_general(qA_out(i), qB_out(i), qC_out(i), 'v1'); 
+        end
 end
 
 
@@ -100,6 +111,7 @@ stairs(t, Z_out);
 title('Z');
 xlabel('Time');
 ylabel('Z');
+legend('Z_{in}', 'Z_{out}');
 
 % Plot in the second subplot
 subplot(3,1,2);
@@ -109,6 +121,7 @@ stairs(t, tx_out);
 title('theta_x');
 xlabel('Time');
 ylabel('theta_x');
+legend('theta_{x_{in}}', 'theta_{x_{out}}');
 
 % Plot in the third subplot
 subplot(3,1,3);
@@ -118,10 +131,10 @@ stairs(t, ty_out);
 title('theta_y');
 xlabel('Time');
 ylabel('theta_y');
+legend('theta_{y_{in}}', 'theta_{y_{out}}');
 
 % Adjust the layout of subplots
 sgtitle('Tracking');
-
 
 figure(2);
 % Plot in the first subplot
@@ -132,6 +145,7 @@ stairs(t, qA_out);
 title('qA');
 xlabel('Time');
 ylabel('qA');
+legend('qA_{in}', 'qA_{out}');
 
 % Plot in the second subplot
 subplot(3,1,2);
@@ -141,6 +155,7 @@ stairs(t, qB_out);
 title('qB');
 xlabel('Time');
 ylabel('qB');
+legend('qB_{in}', 'qB_{out}');
 
 % Plot in the third subplot
 subplot(3,1,3);
@@ -150,6 +165,7 @@ stairs(t, qC_out);
 title('qC');
 xlabel('Time');
 ylabel('qC');
+legend('qC_{in}', 'qC_{out}');
 
 % Adjust the layout of subplots
 sgtitle('Tracking');
