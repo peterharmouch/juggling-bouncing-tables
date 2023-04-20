@@ -66,4 +66,3 @@ xlabel('Point Number')
 ylabel('ty')
 legend('Math', 'Exp')
 title('theta_y vs Point Number')
-

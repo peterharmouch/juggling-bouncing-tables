@@ -1,6 +1,6 @@
 clc; clear; close all;
-addpath(pwd, "lookup tables");
-addpath(genpath(fullfile(pwd, "functions")));
+addpath(genpath(fullfile(pwd, '..', 'Table Kinematics', 'Mathematical model', 'lookup tables')));
+addpath(genpath(fullfile(pwd, '..', 'Table Kinematics', 'Mathematical model', 'functions')));
 
 
 %% Choose parameters
@@ -8,7 +8,7 @@ tic;
 Ts = 0.01; % Sampling time
 t_end = 5; % Total duration
 
-trajectoryType = "Z ramp"; % Check next section for options
+trajectoryType = "Z step"; % Check next section for options
 dynamicsType = "identified"; % Choose between "identified" or "no dynamics"
 kinematicsMethod = "solver"; % Choose between "interpolation" or "nearest" or "solver"
 controller = "PID"; % Choose between "PID" or "no control"
@@ -22,7 +22,7 @@ end
 
 
 %% Defining trajectories to be tracked
-t = (0:Ts:t_end)';
+t = 0:Ts:t_end;
 switch trajectoryType
     case "Z step"
         t_jump = 1;
@@ -41,7 +41,7 @@ switch trajectoryType
     case "Z ramp"
         Z_in = linspace(12, 15, floor(length(t)));
         tx_in = linspace(10, 10, length(t));
-        ty_in = linspace(-5 ,5, length(t));
+        ty_in = linspace(-5 ,-5, length(t));
     case "Z and theta_y ramp"
         Z_in = [linspace(15, 12, floor(length(t)/2)), 12, linspace(12, 15, floor(length(t)/2))];
         tx_in = linspace(0, 0, length(t));
@@ -67,8 +67,8 @@ end
 switch controller
     case "PID"
         Kp = 1;
-        Ki = 0.05;
-        Kd = 0.05;
+        Ki = 0.02;
+        Kd = 0.02;
         Tf = 0;
         C = pid(Kp,Ki,Kd,Tf,Ts);
     case "no control"
@@ -101,7 +101,7 @@ switch kinematicsMethod
 end
 
 
-%% Plot
+%% Plot output tracking
 figure(1);
 % Plot in the first subplot
 subplot(3,1,1);
@@ -134,8 +134,10 @@ ylabel('theta_y');
 legend('theta_{y_{in}}', 'theta_{y_{out}}');
 
 % Adjust the layout of subplots
-sgtitle('Tracking');
+sgtitle('Tracking outputs');
 
+
+%% Plot input tracking
 figure(2);
 % Plot in the first subplot
 subplot(3,1,1);
@@ -168,7 +170,36 @@ ylabel('qC');
 legend('qC_{in}', 'qC_{out}');
 
 % Adjust the layout of subplots
-sgtitle('Tracking');
+sgtitle('Tracking servo angles');
+
+
+%% Plot input to be tracked
+figure(3);
+% Plot in the first subplot
+subplot(3,1,1);
+plot(t, Z_in);
+title('Z');
+xlabel('Time');
+ylabel('Z');
+legend('Z_{in}');
+
+% Plot in the second subplot
+subplot(3,1,2);
+plot(t, tx_in);
+title('theta_x');
+xlabel('Time');
+ylabel('theta_x');
+legend('theta_{x_{in}}');
+
+% Plot in the third subplot
+subplot(3,1,3);
+plot(t, ty_in);
+title('theta_y');
+xlabel('Time');
+ylabel('theta_y');
+legend('theta_{y_{in}}');
+
+% Adjust the layout of subplots
+sgtitle('To be tracked');
 
 toc
-
