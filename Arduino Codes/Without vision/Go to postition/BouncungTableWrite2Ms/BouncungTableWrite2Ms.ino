@@ -18,20 +18,6 @@ void setup() {
 }
 
 void loop() {
-  angleToServos(); 
-  /*
-  qA = 30; qB = 30; qC = 30;
-  angleToMs();
-  writeMsToServos();
-  printMs();
-  delay(500);
-
-  qA = 60; qB = 30; qC = 30;
-  angleToMs();
-  writeMsToServos();
-  printMs();
-  delay(500);
-  */
 }
 
 void angleToMs(){
