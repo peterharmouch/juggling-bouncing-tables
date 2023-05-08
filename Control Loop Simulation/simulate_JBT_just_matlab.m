@@ -10,7 +10,7 @@ t_end = 5; % Total duration
 
 trajectoryType = "Z step"; % Check next section for options
 dynamicsType = "identified"; % Choose between "identified" or "no dynamics"
-kinematicsMethod = "solver"; % Choose between "interpolation" or "nearest" or "solver"
+kinematicsMethod = "nearest"; % Choose between "interpolation" or "nearest" or "solver"
 controller = "PID"; % Choose between "PID" or "no control"
 
 switch kinematicsMethod

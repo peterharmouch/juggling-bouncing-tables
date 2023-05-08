@@ -40,7 +40,7 @@ a6 = rotate_3D(a4' - a5', 'any', qA, av', 'degree');
 b6 = rotate_3D(b4' - b5', 'any', qB, bv', 'degree');
 c6 = rotate_3D(c4' - c5', 'any', qC, cv', 'degree');
 
-a7 = a5 + L1 * normalize(a6');
-b7 = b5 + L1 * normalize(b6');
-c7 = c5 + L1 * normalize(c6');
+a7 = a5 + L1 * (a6'/norm(a6));
+b7 = b5 + L1 * (b6'/norm(b6));
+c7 = c5 + L1 * (c6'/norm(c6));
 end
