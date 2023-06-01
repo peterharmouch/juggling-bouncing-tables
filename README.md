@@ -14,7 +14,7 @@ The repository is organized into the following main folders:
 This folder contains the Arduino codes that are used to control the physical table. The Arduino microcontroller is responsible for interfacing with the servos and implementing the desired control algorithms. Within this folder, you can find subfolders that separate the codes based on specific functionalities or versions.
 
 ### Control Loop Simulation
-The Control Loop Simulation folder houses mathematical models implemented in MATLAB and Simulink. These simulations are used to evaluate and fine-tune the control algorithms for tracking the height, roll, and pitch of the table.
+The Control Loop Simulation folder houses mathematical simulations implemented in MATLAB and Simulink. These simulations are used to evaluate and tune the control algorithms for tracking the height, roll, and pitch of the table. The control loop implemented can be seen in the figure below.
 
 ![BT Top plate block diagram](https://github.com/peterharmouch/juggling-bouncing-tables/assets/127255323/7574caac-5cdf-447b-b824-d838c15f5b4a)
 
