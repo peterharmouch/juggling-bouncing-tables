@@ -16,6 +16,8 @@ This folder contains the Arduino codes that are used to control the physical tab
 ### Control Loop Simulation
 The Control Loop Simulation folder houses mathematical models implemented in MATLAB and Simulink. These simulations are used to evaluate and fine-tune the control algorithms for tracking the height, roll, and pitch of the table.
 
+![BT Top plate block diagram](https://github.com/peterharmouch/juggling-bouncing-tables/assets/127255323/7574caac-5cdf-447b-b824-d838c15f5b4a)
+
 ### System Identification
 The System Identification folder focuses on identifying the dynamics of the system. It involves collecting data by applying a pseudo-random binary signal (PRBS) to the servos and using an opti-track system to measure the position of the table. Subfolders within this directory contain scripts, data files, and analysis results related to system identification.
 
