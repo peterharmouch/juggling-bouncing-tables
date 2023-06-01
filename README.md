@@ -1,6 +1,11 @@
-# juggling-bouncing-tables
+# Juggling Bouncing Tables
 
-Welcome to the GitHub repository for the Juggling Bouncing Tables Project! This project focuses on creating a table that can be controlled using three servos to manipulate the roll, pitch, and height of a top plate. The primary goal of the project is to enable the table to interact with a bouncing ball or aim the ball towards a specific point in space.
+Welcome to the GitHub repository for the Juggling Bouncing Tables Project! This reo contains codes that are relevant to the Bouncing Table, a table that can be controlled using three servos to manipulate the roll, pitch, and height of a top plate. The primary goal of the project is to enable the table to interact with a ping pong ball.
+
+The three main tasks that can be asked of the table are:
+- To stabilize the ball on top of the table.
+- To make the ball bounce on it. 
+- To aim the ball to a specific point in space.
 
 ## Repository Structure
 The repository is organized into the following main folders:
@@ -19,4 +24,5 @@ The Table Kinematics folder contains the mathematical model that forms the core 
 
 ## Contact
 If you have any questions or feedback regarding this project, please don't hesitate to reach out to me:
+
 **email:** peter.harmouch@epfl.ch
