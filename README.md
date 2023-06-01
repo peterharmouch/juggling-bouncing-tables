@@ -4,7 +4,7 @@ Welcome to the GitHub repository for the Juggling Bouncing Tables Project! This 
 
 The three main tasks that can be asked of the table are:
 - To stabilize the ball on top of the table.
-- To make the ball bounce on it. [Video example](https://youtube.com/shorts/WSkZWV_Hm3U?feature=share)
+- To make the ball bounce on it. ([Video example](https://youtube.com/shorts/WSkZWV_Hm3U?feature=share))
 - To aim the ball to a specific point in space.
 
 ## Repository Structure
